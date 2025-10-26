@@ -7,13 +7,14 @@ Run [Tailscale](https://tailscale.com) on Kobo e-readers with persistence across
 - Kobo Libra 2
 - Kobo Libra Colour/Color
 - Kobo Clara BW
+- Kobo Sage
 
 Have another device? Open a PR.
 
 ## Installation
 
 1. Download this repo to your Kobo's onboard storage `KOBOeReader/` into a folder named `tailscale`
-2. Navigate to your device's directory (`libra2/`, `libra-color/`, or `clara-bw/`)
+2. Navigate to your device's directory (`libra2/`, `libra-color/`, `clara-bw/`, or `sage/`)
 3. Run `./install-tailscale.sh`
 4. Run `tailscale up` and authenticate
 
