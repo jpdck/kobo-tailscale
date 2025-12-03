@@ -1,30 +1,53 @@
 # kobo-tailscale
-Install scripts for getting [Tailscale](https://tailscale.com) running on Kobo e-readers and persisting through reboots.
 
-## Supported devices
-- *Kobo Libra 2*
-- *Koba Libra Colour*/*Koba Libra Color*
-- *Kobo Clara BW*
+Run [Tailscale](https://tailscale.com) on Kobo e-readers with persistence across reboots.
 
-If you have another device and would like to contribute, please open a PR!
+## Supported Devices
+
+- Kobo Libra 2
+- Kobo Libra Colour/Color
+- Kobo Clara BW
+
+Have another device? Open a PR.
 
 ## Installation
-> [!NOTE]  
-> The version of Tailscale to install can be chosen by editing the `TAILSCALE_VERSION` variable in `install-tailscale.sh`.
 
-1. Download this repo onto your Kobo e-reader's onboard storage and find your device.
-2. Run `install-tailscale.sh` from the chosen device's directory.
-3. Run `tailscale up` and follow the instructions to authenticate your e-reader!
+1. Download this repo to your Kobo's onboard storage `KOBOeReader/` into a folder named `tailscale`
+2. Navigate to your device's directory (`libra2/`, `libra-color/`, or `clara-bw/`)
+3. Run `./install-tailscale.sh`
+4. Run `tailscale up` and authenticate
+
+By default, installs Tailscale v1.90.9. Change version by editing `TAILSCALE_VERSION` in `install-tailscale.sh` before running.
+
+## Upgrading
+
+```bash
+cd /mnt/onboard/tailscale/
+./upgrade-tailscale.sh [version]  # Optionally specify version, otherwise uses script default
+```
 
 ## Uninstallation
-Simply run `uninstall-tailscale.sh` from the chosen device's directory in the repo.
 
-## DNS Issues
-When there's no DNS manager on a system, Tailscale will resort to just [overwriting resolv.conf](https://tailscale.com/kb/1235/resolv-conf/)
-which can cause issues on Kobo devices. If you find that DNS breaks after a while you can fix this by running
-`tailscale set --accept-dns=false` on your device to prevent it from overwriting resolv.conf.
+```bash
+cd /mnt/onboard/tailscale/
+./uninstall-tailscale.sh
+```
+
+## Troubleshooting
+
+**DNS breaks after a while?** Tailscale overwrites `/etc/resolv.conf` on systems without a DNS manager. Fix:
+```bash
+tailscale set --accept-dns=false
+```
+
+## How It Works
+
+- Tailscale binaries install to `/mnt/onboard/tailscale` (persistent storage)
+- udev rules trigger startup on boot and WiFi events
+- Libra 2 includes pre-built TUN kernel module; other devices have it built-in
+- iptables binaries from Raspbian 2017-07-05 (matches Kobo's glibc version)
 
 ## Acknowledgements
-[Dylan Staley for initial work and scripts on the Kobo Sage](https://dstaley.com/posts/tailscale-on-kobo-sage)
 
-[jmacindoe for documenting kernel module compilation on Kobo readers](https://github.com/jmacindoe/kobo-kernel-modules)
+- [Dylan Staley](https://dstaley.com/posts/tailscale-on-kobo-sage) - Initial Kobo Sage implementation
+- [jmacindoe](https://github.com/jmacindoe/kobo-kernel-modules) - Kernel module compilation documentation
