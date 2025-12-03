@@ -61,3 +61,4 @@ tailscale set --accept-dns=false
 
 - [Dylan Staley](https://dstaley.com/posts/tailscale-on-kobo-sage) - Initial Kobo Sage implementation
 - [jmacindoe](https://github.com/jmacindoe/kobo-kernel-modules) - Kernel module compilation documentation
+- [videah](https://github.com/videah/kobo-tailscale) - For the original kobo-tailscale repo this is based on.
