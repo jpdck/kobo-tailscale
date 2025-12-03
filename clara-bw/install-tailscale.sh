@@ -4,7 +4,7 @@ set -e
 
 # Set what version of tailscale you would like to install here.
 # You can find the latest version at https://pkgs.tailscale.com/stable/#static
-export TAILSCALE_VERSION=1.72.1
+export TAILSCALE_VERSION=1.90.9
 
 echo
 echo "Installing tailscale ${TAILSCALE_VERSION} for Kobo Clara BW!"
