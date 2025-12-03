@@ -2,9 +2,14 @@
 
 set -e
 
-# Set what version of tailscale you would like to install here.
+# Load Tailscale version from shared VERSION file or use default
 # You can find the latest version at https://pkgs.tailscale.com/stable/#static
-export TAILSCALE_VERSION=1.90.2
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+if [ -f "$SCRIPT_DIR/../VERSION" ]; then
+  export TAILSCALE_VERSION=$(cat "$SCRIPT_DIR/../VERSION" | tr -d '[:space:]')
+else
+  export TAILSCALE_VERSION=1.90.9
+fi
 
 echo
 echo "Installing tailscale ${TAILSCALE_VERSION} for Kobo Sage!"

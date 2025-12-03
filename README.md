@@ -23,7 +23,7 @@ Have another device? Open a PR.
 4. Run `./install-tailscale.sh`
 5. Run `tailscale up` and authenticate
 
-By default, installs Tailscale v1.90.9. Change version by editing `TAILSCALE_VERSION` in `install-tailscale.sh` before running.
+By default, installs Tailscale v1.90.9. To change the version for all devices, edit the `VERSION` file at the repository root, or override it with the `TAILSCALE_VERSION` environment variable.
 
 ## Upgrading
 

@@ -7,7 +7,13 @@ if ! command -v tailscale > /dev/null 2>&1; then
   exit 1
 fi
 
-export TAILSCALE_VERSION=1.90.9
+# Load Tailscale version from shared VERSION file or use default
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+if [ -f "$SCRIPT_DIR/../VERSION" ]; then
+  export TAILSCALE_VERSION=$(cat "$SCRIPT_DIR/../VERSION" | tr -d '[:space:]')
+else
+  export TAILSCALE_VERSION=1.90.9
+fi
 
 get_pkg_url() {
   echo "https://pkgs.tailscale.com/stable/tailscale_${1}_arm.tgz"
