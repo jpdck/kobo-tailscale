@@ -13,26 +13,35 @@ Have another device? Open a PR.
 
 ## Installation
 
-1. Download this repo to your Kobo's onboard storage `KOBOeReader/` into a folder named `tailscale`
-2. Navigate to your device's directory (`libra2/`, `libra-color/`, `clara-bw/`, or `sage/`)
-3. Run `./install-tailscale.sh`
-4. Run `tailscale up` and authenticate
+1. Download this repo to your Kobo's onboard storage at `KOBOeReader/kobo-tailscale`
+2. Connect to your Kobo via SSH or terminal
+3. Navigate to your device's directory:
+   ```bash
+   cd /mnt/onboard/kobo-tailscale/<device>/
+   ```
+   where `<device>` is `libra2`, `libra-color`, `clara-bw`, or `sage`
+4. Run `./install-tailscale.sh`
+5. Run `tailscale up` and authenticate
 
 By default, installs Tailscale v1.90.9. Change version by editing `TAILSCALE_VERSION` in `install-tailscale.sh` before running.
 
 ## Upgrading
 
 ```bash
-cd /mnt/onboard/tailscale/
+cd /mnt/onboard/kobo-tailscale/<device>/
 ./upgrade-tailscale.sh [version]  # Optionally specify version, otherwise uses script default
 ```
+
+Replace `<device>` with your device directory (`libra2`, `libra-color`, `clara-bw`, or `sage`).
 
 ## Uninstallation
 
 ```bash
-cd /mnt/onboard/tailscale/
+cd /mnt/onboard/kobo-tailscale/<device>/
 ./uninstall-tailscale.sh
 ```
+
+Replace `<device>` with your device directory (`libra2`, `libra-color`, `clara-bw`, or `sage`).
 
 ## Troubleshooting
 
